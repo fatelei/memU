@@ -1,0 +1,53 @@
+identity:
+  author: memu
+  name: memu
+  label:
+    en_US: "MemU"
+    zh_Hans: "MemU"
+  description:
+    en_US: "MemU tools for memorization (write) and retrieval (read) of user memories."
+    zh_Hans: "MemU 工具：写入/检索用户记忆。"
+  icon: "../_assets/icon.txt"
+  icon_dark: "../_assets/icon.txt"
+  tags: ["productivity", "utilities", "rag"]
+credentials_for_provider:
+  api_key:
+    name: api_key
+    type: secret-input
+    required: true
+    label:
+      en_US: "LLM API Key"
+      zh_Hans: "LLM API 密钥"
+    placeholder:
+      en_US: "Enter API key"
+      zh_Hans: "输入密钥"
+  base_url:
+    name: base_url
+    type: text-input
+    required: false
+    default: "https://api.openai.com/v1"
+    label:
+      en_US: "LLM Base URL"
+      zh_Hans: "LLM 接口地址"
+  chat_model:
+    name: chat_model
+    type: text-input
+    required: false
+    default: "gpt-4o-mini"
+    label:
+      en_US: "Chat Model"
+      zh_Hans: "对话模型"
+  embed_model:
+    name: embed_model
+    type: text-input
+    required: false
+    default: "text-embedding-3-small"
+    label:
+      en_US: "Embedding Model"
+      zh_Hans: "向量模型"
+extra:
+  python:
+    source: "../src/provider.py"
+tools:
+  - "tools/memu_memorize.yaml"
+  - "tools/memu_retrieve.yaml"

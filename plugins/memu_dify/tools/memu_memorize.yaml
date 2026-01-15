@@ -1,0 +1,59 @@
+identity:
+  author: memu
+  name: memorize_resource
+  label:
+    en_US: "Memorize Resource"
+    zh_Hans: "写入记忆"
+parameters:
+  - name: resource_url
+    label:
+      en_US: "Resource URL or path"
+      zh_Hans: "资源 URL 或路径"
+    human_description:
+      en_US: "URL/path of the input (text file, image, audio, video, or conversation log)."
+      zh_Hans: "输入资源（文本/图片/音频/视频/会话日志）的 URL 或本地路径。"
+    type: string
+    form: llm
+    required: true
+    llm_description: "Path or URL to ingest."
+  - name: modality
+    label:
+      en_US: "Modality"
+      zh_Hans: "模态"
+    human_description:
+      en_US: "Type of the resource."
+      zh_Hans: "资源类型。"
+    type: select
+    options:
+      - value: conversation
+        label: { en_US: "conversation", zh_Hans: "对话" }
+      - value: document
+        label: { en_US: "document", zh_Hans: "文档" }
+      - value: audio
+        label: { en_US: "audio", zh_Hans: "音频" }
+      - value: image
+        label: { en_US: "image", zh_Hans: "图片" }
+      - value: video
+        label: { en_US: "video", zh_Hans: "视频" }
+    form: llm
+    required: true
+    llm_description: "One of conversation|document|audio|image|video."
+  - name: user
+    label:
+      en_US: "User Scope"
+      zh_Hans: "用户范围"
+    human_description:
+      en_US: "Optional user object to scope memory (e.g., {user_id: 'u1'})."
+      zh_Hans: "可选用户对象（例如 {user_id: 'u1'}）。"
+    type: object
+    form: llm
+    required: false
+
+description:
+  human:
+    en_US: "Store a resource into MemU and extract memories into categories."
+    zh_Hans: "将资源写入 MemU，并提取记忆到类别。"
+  llm: "Ingest a resource by URL/path with a specified modality and return extracted memory items, resources, and categories."
+extra:
+  python:
+    source: "../src/tools/memorize.py"

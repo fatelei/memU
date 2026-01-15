@@ -1,0 +1,52 @@
+identity:
+  author: memu
+  name: retrieve_memories
+  label:
+    en_US: "Retrieve Memories"
+    zh_Hans: "检索记忆"
+parameters:
+  - name: query
+    label:
+      en_US: "Query"
+      zh_Hans: "查询"
+    human_description:
+      en_US: "User query text to search memories."
+      zh_Hans: "用于检索记忆的查询文本。"
+    type: string
+    form: llm
+    required: true
+    llm_description: "Natural language query."
+  - name: method
+    label:
+      en_US: "Method"
+      zh_Hans: "方法"
+    human_description:
+      en_US: "Retrieval strategy."
+      zh_Hans: "检索策略。"
+    type: select
+    options:
+      - value: rag
+        label: { en_US: "RAG (vector)", zh_Hans: "RAG（向量）" }
+      - value: llm
+        label: { en_US: "LLM ranking", zh_Hans: "LLM 排序" }
+    form: llm
+    required: false
+  - name: where
+    label:
+      en_US: "Where Filters"
+      zh_Hans: "过滤条件"
+    human_description:
+      en_US: "Optional scope filters, e.g. {user_id: 'u1'}."
+      zh_Hans: "可选过滤条件，例如 {user_id: 'u1'}。"
+    type: object
+    form: llm
+    required: false
+
+description:
+  human:
+    en_US: "Retrieve categories, items, and resources related to a query from MemU."
+    zh_Hans: "从 MemU 中检索与查询相关的类别、条目和资源。"
+  llm: "Search the MemU store using the query. Returns selected categories, items, and resources."
+extra:
+  python:
+    source: "../src/tools/retrieve.py"
